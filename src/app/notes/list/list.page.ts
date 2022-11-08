@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, Message } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-list',
@@ -17,11 +16,7 @@ export class ListPage implements OnInit {
     },
   ];
 
-  constructor(private data: DataService) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  getMessages(): Message[] {
-    return this.data.getMessages();
-  }
 }
