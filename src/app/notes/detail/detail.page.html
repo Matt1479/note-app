@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/notes/list"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img>{{ notes[0].thumbnail }}</ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2 class="title">
+          {{ notes[0].title }}
+
+          <span class="date">
+            <ion-note [innerText]="notes[0].date | date"></ion-note>
+          </span>
+        </h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text class="ion-text-wrap">{{ notes[0].content }}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
