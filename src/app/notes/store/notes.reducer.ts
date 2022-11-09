@@ -38,21 +38,31 @@ export const notesReducer = createReducer(
   })),
   on(loadNotesFailure, (state, payload) => ({
     ...state,
+    notesLoaded: LoadingStatus.failedToLoad,
     error: payload.error,
   })),
   on(deleteNoteById, (state, payload) => ({
     ...state,
     notes: state.notes.filter((note, index) => {
-      console.log(state);
       return note.id !== payload.id;
     }),
-  })),
-  // to do
-  on(updateNote, (state, payload) => ({
-    ...state,
   })),
   on(addNote, (state, payload) => ({
     ...state,
     notes: [...state.notes, payload.note],
+  })),
+  on(updateNote, (state, payload) => ({
+    ...state,
+    notes: [
+      ...state.notes.map((note, index) =>
+        note.id === payload.note.id
+          ? {
+              id: payload.note.id,
+              title: payload.note.title,
+              content: payload.note.content,
+            }
+          : note
+      ),
+    ],
   }))
 );

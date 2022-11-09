@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/store/app.reducer';
@@ -17,7 +17,8 @@ export class DetailPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<State>
+    private store: Store<State>,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -30,11 +31,9 @@ export class DetailPage implements OnInit {
         return n[index].id === this.noteId;
       });
     });
+  }
 
-    // this.store.pipe(select(selectNotes)).subscribe((n) => console.log(n));
-    // this.notes$.subscribe((n) => {
-
-    //   console.log(this.note);
-    // });
+  onEditNote() {
+    this.router.navigate(['/notes/edit/' + this.noteId]);
   }
 }

@@ -7,6 +7,11 @@ import { PreloadNotesGuard } from './preload-notes.guard';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/notes/list',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: NotesPage,
     canActivate: [PreloadNotesGuard],
     children: [
@@ -25,6 +30,11 @@ const routes: Routes = [
         path: ':noteId',
         loadChildren: () =>
           import('./detail/detail.module').then((m) => m.DetailPageModule),
+      },
+      {
+        path: 'edit/:noteId',
+        loadChildren: () =>
+          import('./edit/edit.module').then((m) => m.EditPageModule),
       },
     ],
   },

@@ -3,6 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/notes/list"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button type="submit" (click)="onEditNote()">
+        <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

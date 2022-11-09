@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/notes/list"></ion-back-button>
     </ion-buttons>
-    <ion-title>New Note</ion-title>
+    <ion-title>Edit Note</ion-title>
     <ion-buttons slot="primary">
       <ion-button
         type="submit"
-        (click)="onCreateNote()"
-        *ngIf="newNoteForm.valid"
+        (click)="onConfirm()"
+        *ngIf="editNoteForm.valid"
       >
         <ion-icon name="checkmark" slot="icon-only"></ion-icon>
       </ion-button>
@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="newNoteForm">
+  <form [formGroup]="editNoteForm">
     <ion-grid>
       <ion-row>
         <ion-col>

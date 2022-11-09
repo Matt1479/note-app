@@ -8,9 +8,9 @@ export enum NotesActionType {
 
   deleteNoteById = '[NotesActionType] Delete Note By Id',
 
-  updateNote = '[NotesActionType] Update Note',
-
   addNote = '[NotesActionType] Add Note',
+
+  updateNote = '[NotesActionType] Update Note',
 }
 
 export const loadNotes = createAction(NotesActionType.loadNotes);
@@ -28,14 +28,12 @@ export const deleteNoteById = createAction(
   props<{ id: string }>()
 );
 
-export const updateNote = createAction(
-  NotesActionType.updateNote,
-  props<{ id: string }>()
-);
-
 export const addNote = createAction(
   NotesActionType.addNote,
   props<{ note: Note }>()
 );
 
-// to do - add updating, adding new
+export const updateNote = createAction(
+  NotesActionType.updateNote,
+  props<{ note: Note }>()
+);
