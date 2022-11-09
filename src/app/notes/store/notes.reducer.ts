@@ -4,14 +4,18 @@ import { LoadingStatus } from 'src/app/models/loadingStatus.enum';
 import { Note } from '../note.model';
 import {
   addNote,
+  addToFavorites,
   deleteNoteById,
+  loadFavorites,
   loadNotesFailure,
   loadNotesSuccess,
+  removeFromFavorites,
   updateNote,
 } from './notes.actions';
 
 export interface NotesState {
   notes: Note[];
+  favorites: Note[];
   notesLoaded: LoadingStatus;
   error: any;
 }
@@ -24,6 +28,7 @@ export interface State extends AppState {
 
 const notesInitialState: NotesState = {
   notes: [],
+  favorites: [],
   notesLoaded: LoadingStatus.notLoaded,
   error: null,
 };
@@ -64,5 +69,21 @@ export const notesReducer = createReducer(
           : note
       ),
     ],
+  })),
+  on(addToFavorites, (state, payload) => ({
+    ...state,
+    favorites: [...state.favorites, payload.note],
+  })),
+  on(removeFromFavorites, (state, payload) => ({
+    ...state,
+    favorites: state.favorites.filter((note, index) => {
+      return note.id !== payload.note.id;
+    }),
+  })),
+
+  on(loadFavorites, (state, payload) => ({
+    ...state,
+    favorites: payload.favorites,
+    error: null,
   }))
 );

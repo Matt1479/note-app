@@ -11,6 +11,12 @@ export enum NotesActionType {
   addNote = '[NotesActionType] Add Note',
 
   updateNote = '[NotesActionType] Update Note',
+
+  addToFavorites = '[NotesActionType] Add To Favorites',
+
+  removeFromFavorites = '[NotesActionType] Remove From Favorites',
+
+  loadFavorites = '[NotesActionType] Load Favorites',
 }
 
 export const loadNotes = createAction(NotesActionType.loadNotes);
@@ -36,4 +42,19 @@ export const addNote = createAction(
 export const updateNote = createAction(
   NotesActionType.updateNote,
   props<{ note: Note }>()
+);
+
+export const addToFavorites = createAction(
+  NotesActionType.addToFavorites,
+  props<{ note: Note }>()
+);
+
+export const removeFromFavorites = createAction(
+  NotesActionType.removeFromFavorites,
+  props<{ note: Note }>()
+);
+
+export const loadFavorites = createAction(
+  NotesActionType.loadFavorites,
+  props<{ favorites: Note[] }>()
 );
