@@ -1,9 +1,52 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>new</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/notes/list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Note</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button
+        type="submit"
+        (click)="onCreateNote()"
+        *ngIf="newNoteForm.valid"
+      >
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="newNoteForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input
+              class="new-note"
+              placeholder="Title"
+              type="text"
+              autocomplete="on"
+              autocorrect="on"
+              formControlName="title"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-textarea
+              class="new-note"
+              placeholder="Description"
+              type="text"
+              autocomplete="on"
+              autocorrect="on"
+              formControlName="content"
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

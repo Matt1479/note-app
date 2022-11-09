@@ -2,6 +2,6 @@ export interface Note {
   id?: string;
   title: string;
   date: Date;
-  thumbnail: string;
+  thumbnail?: string;
   content: string;
 }
