@@ -10,17 +10,17 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-img>{{ notes[0].thumbnail }}</ion-img>
+        <ion-img>{{ note.thumbnail }}</ion-img>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
         <h2 class="title">
-          {{ notes[0].title }}
+          {{ note.title }}
 
           <span class="date">
-            <ion-note [innerText]="notes[0].date | date"></ion-note>
+            <ion-note [innerText]="note.date | date"></ion-note>
           </span>
         </h2>
       </ion-col>
@@ -28,7 +28,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-text class="ion-text-wrap">{{ notes[0].content }}</ion-text>
+        <ion-text class="ion-text-wrap">{{ note.content }}</ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>
