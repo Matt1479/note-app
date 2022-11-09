@@ -10,10 +10,16 @@ const routes: Routes = [
     component: NotesPage,
     canActivate: [PreloadNotesGuard],
     children: [
+      // remember - hard coded routes first!
       {
         path: 'list',
         loadChildren: () =>
           import('./list/list.module').then((m) => m.ListPageModule),
+      },
+      {
+        path: 'new',
+        loadChildren: () =>
+          import('./new/new.module').then((m) => m.NewPageModule),
       },
       {
         path: ':noteId',
