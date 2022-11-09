@@ -10,10 +10,7 @@
   <div *ngIf="(notes$ | async) as notes">
     <ion-list *ngFor="let note of notes">
       <ion-item-sliding #slidingItem>
-        <ion-item [routerLink]="'/notes/' + note.id">
-          <ion-thumbnail slot="start" *ngIf="note.thumbnail">
-            <ion-img [src]="note.thumbnail"> </ion-img>
-          </ion-thumbnail>
+        <ion-item [routerLink]="'/notes/' + note.id" detail>
           <ion-label>
             <h1>
               {{ note.title }}

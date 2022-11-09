@@ -24,7 +24,5 @@ export class NotesEffects {
     );
   });
 
-  // deleteNoteById$ = createEffect(() => {})
-
   constructor(private service: NotesService, private actions$: Actions) {}
 }
