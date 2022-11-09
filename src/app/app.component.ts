@@ -10,7 +10,6 @@ export class AppComponent {
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Notes', url: '/notes/list', icon: 'documents' },
     { title: 'Favorites', url: '/favorites', icon: 'heart' },
-    { title: 'Trash', url: '/trash', icon: 'trash' },
     { title: 'Settings', url: '/settings', icon: 'settings' },
   ];
 
