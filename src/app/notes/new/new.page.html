@@ -8,6 +8,7 @@
       <ion-button
         type="submit"
         (click)="onCreateNote()"
+        [disabled]="!newNoteForm.valid"
         *ngIf="newNoteForm.valid"
       >
         <ion-icon name="checkmark" slot="icon-only"></ion-icon>
@@ -23,7 +24,8 @@
         <ion-col>
           <ion-item lines="none" class="input-item">
             <ion-input
-              class="new-note"
+              inputmode="text"
+              [spellcheck]="true"
               placeholder="Title"
               type="text"
               autocomplete="on"
@@ -37,13 +39,15 @@
         <ion-col>
           <ion-item lines="none" class="input-item">
             <ion-textarea
-              class="new-note"
-              placeholder="Description"
-              type="text"
+              [autoGrow]="true"
+              autocapitalize="on"
+              [spellcheck]="true"
+              inputmode="text"
               autocomplete="on"
               autocorrect="on"
+              placeholder="Description"
+              type="text"
               formControlName="content"
-              rows="25"
             ></ion-textarea>
           </ion-item>
         </ion-col>

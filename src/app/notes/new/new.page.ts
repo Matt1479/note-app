@@ -14,6 +14,7 @@ import { addNote } from '../store/notes.actions';
 })
 export class NewPage implements OnInit {
   newNoteForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private alertCtrl: AlertController,
@@ -44,11 +45,12 @@ export class NewPage implements OnInit {
       id: new Date().getTime().toString(),
       title: this.newNoteForm.controls.title.value,
       date: this.newNoteForm.controls.date.value,
-      content: this.newNoteForm.controls.title.value,
+      content: this.newNoteForm.controls.content.value,
     };
 
     this.store.dispatch(addNote({ note: newNote }));
 
+    this.newNoteForm.reset();
     this.router.navigate(['/notes/list']);
   }
 }

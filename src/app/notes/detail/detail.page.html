@@ -17,7 +17,6 @@
       <ion-col>
         <h2 class="title">
           {{ note.title }}
-
           <span class="date">
             <ion-note [innerText]="note.date | date"></ion-note>
           </span>
@@ -27,7 +26,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-text class="ion-text-wrap">{{ note.content }}</ion-text>
+        <ion-text class="ion-text-wrap" [innerText]="note.content"></ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>
