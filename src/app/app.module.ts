@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { AppEffects } from './store/app.effects';
     IonicModule.forRoot(),
     AppRoutingModule,
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({}),
     EffectsModule.forRoot([AppEffects]),
     HttpClientModule,
   ],
