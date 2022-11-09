@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, IonItemSliding } from '@ionic/angular';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { State } from 'src/app/store/app.reducer';
+import { Note } from '../note.model';
+import { deleteNoteById } from '../store/notes.actions';
+import { selectNotes } from '../store/notes.selector';
 
 @Component({
   selector: 'app-list',
@@ -6,17 +13,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
-  notes = [
-    {
-      title: 'Note Header',
-      date: new Date(),
-      thumbnail: '../../../assets/icon/favicon.png',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis, nisl vitae fringilla porttitor, sem eros vestibulum ligula, sit amet sodales ex lectus vel erat. Suspendisse auctor dapibus nunc, sed bibendum ipsum iaculis at. Suspendisse porta magna sit amet lorem efficitur, et pulvinar leo facilisis. Maecenas eget erat volutpat, pretium risus vitae, condimentum elit.',
-    },
-  ];
+  public notes$: Observable<Note[]>;
 
-  constructor() {}
+  constructor(
+    private store: Store<State>,
+    private alertCtrl: AlertController
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.notes$ = this.store.pipe(select(selectNotes));
+  }
+
+  onDeleteNote(noteId: string, slidingItem: IonItemSliding) {
+    this.alertCtrl
+      .create({
+        message: 'Are you sure you want to delete?',
+        buttons: [
+          {
+            text: 'Yes',
+            handler: () => {
+              slidingItem.close();
+              this.store.dispatch(deleteNoteById({ id: noteId }));
+            },
+          },
+          {
+            text: 'No',
+            handler: () => slidingItem.close(),
+          },
+        ],
+      })
+      .then((alertEl) => alertEl.present());
+  }
 }
