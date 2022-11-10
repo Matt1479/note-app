@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { IonToggle } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -22,17 +22,23 @@ export class SettingsPage implements OnInit {
 
   constructor(
     private store: Store<State>,
-    private themeService: ThemeService
-  ) {}
+    private themeService: ThemeService,
+    private ref: ChangeDetectorRef
+  ) {
+    setInterval(() => {
+      this.ref.markForCheck();
+      this.ref.detectChanges();
+    }, 1000);
+  }
 
   ngOnInit() {
     this.prefersDark = this.themeService.prefersDark;
 
-    this.theme$ = this.store.pipe(select(selectTheme));
-
     Preferences.get({ key: 'theme' }).then((theme) => {
-      this.currentTheme = JSON.parse(theme.value).theme as Theme;
+      this.currentTheme = JSON?.parse(theme?.value)?.theme as Theme;
     });
+
+    this.theme$ = this.store.pipe(select(selectTheme));
   }
 
   onChange(e) {

@@ -57,7 +57,15 @@ export class AppComponent implements OnInit, OnDestroy {
         }
 
         Preferences.get({ key: 'theme' }).then((theme) => {
-          const currentTheme = JSON.parse(theme.value).theme as Theme;
+          if (theme.value === null) {
+            if (this.themeService.prefersDark.matches) {
+              this.setThemeKey(Theme.dark);
+            } else if (!this.themeService.prefersDark.matches) {
+              this.setThemeKey(Theme.light);
+            }
+          }
+
+          const currentTheme = JSON?.parse(theme?.value)?.theme as Theme;
 
           if (currentTheme === Theme.dark) {
             document.body.classList.remove(Theme.light);
@@ -69,6 +77,16 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         });
       });
+  }
+
+  setThemeKey(theme: Theme) {
+    Preferences.clear();
+    Preferences.set({
+      key: 'theme',
+      value: JSON.stringify({
+        theme: theme,
+      }),
+    }).then();
   }
 
   ngOnDestroy(): void {

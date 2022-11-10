@@ -18,20 +18,12 @@
       (ionChange)="onChange($event)"
       [value]="currentTheme === 'dark' ? 'dark' : 'light'"
     >
-      <ion-item
-        class="ion-margin"
-        [class]="currentTheme === 'dark' ? 'light-radio' : 'dark-radio'"
-        lines="none"
-      >
+      <ion-item class="ion-margin dark-radio" lines="none">
         <ion-label class="ion-padding">Dark</ion-label>
         <ion-radio slot="start" value="dark"></ion-radio>
       </ion-item>
 
-      <ion-item
-        class="ion-margin"
-        lines="none"
-        [class]="currentTheme === 'dark' ? 'dark-radio' : 'light-radio'"
-      >
+      <ion-item class="ion-margin light-radio" lines="none">
         <ion-label class="ion-padding">Light</ion-label>
         <ion-radio slot="start" value="light"></ion-radio>
       </ion-item>
