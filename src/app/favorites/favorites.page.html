@@ -8,5 +8,22 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-text-center ion-margin">Favorites...</div>
+  <div *ngIf="favorites">
+    <ion-list *ngFor="let favoriteNote of favorites">
+      <ion-item [routerLink]="'/notes/' + favoriteNote.id" detail>
+        <ion-label>
+          <h1>
+            {{ favoriteNote.title }}
+            <span class="date">
+              <ion-note [innerText]="favoriteNote.date | date"></ion-note>
+            </span>
+          </h1>
+          <p>{{ favoriteNote.content }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="favorites?.length <=0">
+    <p class="ion-text-center">No favorites.</p>
+  </div>
 </ion-content>

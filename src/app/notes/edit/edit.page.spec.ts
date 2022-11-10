@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TrashPage } from './trash.page';
+import { EditPage } from './edit.page';
 
-describe('TrashPage', () => {
-  let component: TrashPage;
-  let fixture: ComponentFixture<TrashPage>;
+describe('EditPage', () => {
+  let component: EditPage;
+  let fixture: ComponentFixture<EditPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrashPage ],
+      declarations: [ EditPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrashPage);
+    fixture = TestBed.createComponent(EditPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
