@@ -41,7 +41,6 @@ export class DetailPage implements OnInit {
       });
 
       this.fav = !!favFound;
-      console.log(favFound, this.fav);
     });
   }
 

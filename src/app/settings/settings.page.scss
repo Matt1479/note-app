@@ -5,3 +5,13 @@ ion-item::part(native) {
 ion-item {
   --ion-margin: 4px;
 }
+
+.dark-radio {
+  --background: #222428;
+  --color: #ffffff;
+}
+
+.light-radio {
+--background: #f4f5f8;
+--color: #000000;
+}

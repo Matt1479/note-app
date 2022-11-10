@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Preferences } from '@capacitor/preferences';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ThemeService } from './services/theme.service';
@@ -54,6 +55,19 @@ export class AppComponent implements OnInit, OnDestroy {
             }
             break;
         }
+
+        Preferences.get({ key: 'theme' }).then((theme) => {
+          const currentTheme = JSON.parse(theme.value).theme as Theme;
+
+          if (currentTheme === Theme.dark) {
+            document.body.classList.remove(Theme.light);
+            document.body.classList.add(Theme.dark);
+          }
+          if (currentTheme === Theme.light) {
+            document.body.classList.remove(Theme.dark);
+            document.body.classList.add(Theme.light);
+          }
+        });
       });
   }
 

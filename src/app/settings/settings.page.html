@@ -16,11 +16,11 @@
     >
     <ion-radio-group
       (ionChange)="onChange($event)"
-      [value]="prefersDark.matches ? 'dark' : 'light'"
+      [value]="currentTheme === 'dark' ? 'dark' : 'light'"
     >
       <ion-item
         class="ion-margin"
-        [color]="prefersDark.matches ? 'light' : 'dark'"
+        [class]="currentTheme === 'dark' ? 'light-radio' : 'dark-radio'"
         lines="none"
       >
         <ion-label class="ion-padding">Dark</ion-label>
@@ -29,8 +29,8 @@
 
       <ion-item
         class="ion-margin"
-        [color]="prefersDark.matches ? 'dark' : 'light'"
         lines="none"
+        [class]="currentTheme === 'dark' ? 'dark-radio' : 'light-radio'"
       >
         <ion-label class="ion-padding">Light</ion-label>
         <ion-radio slot="start" value="light"></ion-radio>
