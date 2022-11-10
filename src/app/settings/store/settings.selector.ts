@@ -8,8 +8,3 @@ export const selectTheme = createSelector(
   selectSettingsState,
   (state: SettingsState) => state.theme
 );
-
-export const selectMode = createSelector(
-  selectSettingsState,
-  (state: SettingsState) => state.mode
-);

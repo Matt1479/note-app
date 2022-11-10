@@ -25,6 +25,19 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.input-item {
-  --background: #121212;
+@import './theme/dark.scss';
+@import './theme/light.scss';
+
+body.dark {
+  ion-loading.loader {
+    --background: #1e1e1e;
+    color: #ffffff;
+  }
+}
+
+body.light {
+  ion-loading.loader {
+    --background: #ffffff;
+    color: #1e1e1e;
+  }
 }

@@ -44,5 +44,8 @@ export class PreloadNotesGuard implements CanActivate {
     );
   }
 
-  private loader = this.loadingCtrl.create({ message: 'Loading notes...' });
+  private loader = this.loadingCtrl.create({
+    message: 'Loading notes...',
+    cssClass: 'loader',
+  });
 }

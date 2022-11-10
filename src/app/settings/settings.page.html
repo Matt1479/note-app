@@ -7,6 +7,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-text-center ion-margin">Settings...</div>
+<ion-content *ngIf="(theme$ | async) as theme">
+  <ion-list class="theme-list">
+    <ion-list-header slot="end"
+      ><ion-label class="ion-text-center"
+        >Choose your theme</ion-label
+      ></ion-list-header
+    >
+    <ion-radio-group
+      (ionChange)="onChange($event)"
+      [value]="prefersDark.matches ? 'dark' : 'light'"
+    >
+      <ion-item
+        class="ion-margin"
+        [color]="prefersDark.matches ? 'light' : 'dark'"
+        lines="none"
+      >
+        <ion-label class="ion-padding">Dark</ion-label>
+        <ion-radio slot="start" value="dark"></ion-radio>
+      </ion-item>
+
+      <ion-item
+        class="ion-margin"
+        [color]="prefersDark.matches ? 'dark' : 'light'"
+        lines="none"
+      >
+        <ion-label class="ion-padding">Light</ion-label>
+        <ion-radio slot="start" value="light"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 </ion-content>
