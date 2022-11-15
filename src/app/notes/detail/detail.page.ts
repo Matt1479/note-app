@@ -37,4 +37,8 @@ export class DetailPage implements OnInit {
   onEditNote() {
     this.router.navigate(['/notes/edit/' + this.noteId]);
   }
+
+  onGoBack() {
+    this.router.navigate(['notes/list']);
+  }
 }
