@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'notes/list',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -23,10 +23,11 @@ const routes: Routes = [
       import('./settings/settings.module').then((m) => m.SettingsPageModule),
   },
   {
-    path: 'favorites',
+    path: 'not-found',
     loadChildren: () =>
-      import('./favorites/favorites.module').then((m) => m.FavoritesPageModule),
+      import('./not-found/not-found.module').then((m) => m.NotFoundPageModule),
   },
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({

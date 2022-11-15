@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Preferences } from '@capacitor/preferences';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ThemeService } from './services/theme.service';
@@ -21,7 +22,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Notes', url: '/notes/list', icon: 'documents' },
-    { title: 'Favorites', url: '/favorites', icon: 'heart' },
     { title: 'Settings', url: '/settings', icon: 'settings' },
   ];
 
@@ -54,7 +54,38 @@ export class AppComponent implements OnInit, OnDestroy {
             }
             break;
         }
+
+        Preferences.get({ key: 'theme' }).then((theme) => {
+          if (theme.value === null) {
+            if (this.themeService.prefersDark.matches) {
+              this.setThemeKey(Theme.dark);
+            } else if (!this.themeService.prefersDark.matches) {
+              this.setThemeKey(Theme.light);
+            }
+          }
+
+          const currentTheme = JSON?.parse(theme?.value)?.theme as Theme;
+
+          if (currentTheme === Theme.dark) {
+            document.body.classList.remove(Theme.light);
+            document.body.classList.add(Theme.dark);
+          }
+          if (currentTheme === Theme.light) {
+            document.body.classList.remove(Theme.dark);
+            document.body.classList.add(Theme.light);
+          }
+        });
       });
+  }
+
+  setThemeKey(theme: Theme) {
+    Preferences.clear();
+    Preferences.set({
+      key: 'theme',
+      value: JSON.stringify({
+        theme: theme,
+      }),
+    }).then();
   }
 
   ngOnDestroy(): void {

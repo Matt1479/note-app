@@ -8,5 +8,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="ion-text-center ion-margin">Home Page...</div>
+  <ion-list class="ion-text-center ion-padding">
+    <ion-button
+      color="primary"
+      expand="block"
+      class="ion-margin"
+      routerLink="/notes/list"
+      >Browse Notes</ion-button
+    >
+    <ion-button
+      color="dark"
+      expand="block"
+      class="ion-margin"
+      routerLink="/settings"
+      >Settings</ion-button
+    >
+  </ion-list>
 </ion-content>
