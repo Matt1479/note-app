@@ -13,8 +13,3 @@ export const notesLoading = createSelector(
   selectNotesState,
   (state: NotesState) => state.notesLoaded
 );
-
-export const selectFavorites = createSelector(
-  selectNotesState,
-  (state: NotesState) => state?.favorites
-);
